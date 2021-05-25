@@ -62,7 +62,7 @@ public class MailSender extends HttpServlet {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject(sub);
             message.setText(msg);
-            Transport.send(message);
+//            Transport.send(message);
         }catch(Exception e){
             e.printStackTrace(out);
         }

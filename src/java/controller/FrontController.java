@@ -49,19 +49,9 @@ public class FrontController extends HttpServlet {
             ServletContext sc=getServletContext();
             
         String viewpath=sc.getInitParameter(path_info.substring(1));
-        out.println(viewpath+"<----");
+        out.println(viewpath+"<----"+res);
         
-        request.getRequestDispatcher(viewpath).forward(request, response);
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FrontController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FrontController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+//        request.getRequestDispatcher(viewpath).forward(request, response);
         }catch(Exception e){
             out.println(out);
         }

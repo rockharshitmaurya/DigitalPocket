@@ -28,24 +28,19 @@ public class Registration implements Business{
        String qus=request.getParameter("qus");
        try{
            DBConnection db=new DBConnection();
-            db.pstmt=db.con.prepareStatement("insert into registration(name,email,password,rec_q,rec_a,country,state,city,mo_no,gender) values(?,?,?,?,?,?,?,?,?,?)");
-            db.pstmt.setString(1,name);
-            db.pstmt.setString(2,email);
-            db.pstmt.setString(3,pwd);
-            db.pstmt.setString(4,qus);
-            db.pstmt.setString(5,ans);
-            db.pstmt.setString(6,country);
-            db.pstmt.setString(7,state);
-            db.pstmt.setString(8,city);
-            db.pstmt.setString(9,no);
-            db.pstmt.setString(10,gender);
+            db.pstmt=db.con.prepareStatement("insert into user_master(uid,name,phone_no,city_id,email,gender) values(?,?,?,?,?,?)");
+            db.pstmt.setInt(1, 1);
+            db.pstmt.setString(2,name);
+            db.pstmt.setString(3,no);
+            db.pstmt.setInt(4,1);
+            db.pstmt.setString(5,email);
+            db.pstmt.setString(6,gender);
             int i=db.pstmt.executeUpdate();
             if(i>0){
-                db.pstmt=db.con.prepareStatement("insert into login(email,password,u_id,name) values(?,?,?,?)");
+                db.pstmt=db.con.prepareStatement("insert into login_master(email,password,name) values(?,?,?)");
                 db.pstmt.setString(1, email);
                 db.pstmt.setString(2, pwd);
-                db.pstmt.setString(3, email.substring(0,email.indexOf("@")));
-                db.pstmt.setString(4, name);
+                db.pstmt.setInt(3, Integer.valueOf(name));
                 int j=db.pstmt.executeUpdate();
                 if(j>0){
                    Random rnd = new Random();
