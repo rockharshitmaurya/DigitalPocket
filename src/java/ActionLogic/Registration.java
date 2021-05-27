@@ -31,11 +31,6 @@ public class Registration implements Business {
         String qus = request.getParameter("qus");
         try {
             DBConnection db = new DBConnection();
-            db.pstmt=db.con.prepareStatement("insert into city(city_id,city_name,state_id) values(?,?,?)");
-            db.pstmt.setInt(1, 11);
-            db.pstmt.setString(2, "lucknow");
-            db.pstmt.setInt(3, 12);
-            PreparedStatement cityq=db.pstmt;
             db.pstmt = db.con.prepareStatement("insert into user_master(uid,name,phone_no,city_id,email,gender) values(?,?,?,?,?,?)");
             db.pstmt.setInt(1, 1);
             db.pstmt.setString(2, name);
@@ -43,27 +38,24 @@ public class Registration implements Business {
             db.pstmt.setInt(4, 1);
             db.pstmt.setString(5, email);
             db.pstmt.setString(6, gender);
-            PreparedStatement userq=db.pstmt;
+            PreparedStatement userq = db.pstmt;
             db.pstmt = db.con.prepareStatement("insert into login_master(email,password,status) values(?,?,?)");
             db.pstmt.setString(1, email);
             db.pstmt.setString(2, pwd);
             db.pstmt.setInt(3, 0);
             int j = db.pstmt.executeUpdate();
-            int i=cityq.executeUpdate();
-            int k=userq.executeUpdate();
+            int k = userq.executeUpdate();
 
-//            Random rnd = new Random();
-//            int otp = rnd.nextInt(999999);
-//            db.pstmt = db.con.prepareStatement("insert into verification(user_id,vcode) values(?,?)");
-//            db.pstmt.setString(1, email.substring(0, email.indexOf("@")));
-//            db.pstmt.setString(2, String.valueOf(otp));
-//            int k = db.pstmt.executeUpdate();
-//
-////                         out.println("<h1>Registion Sucessfull,please please check your inbox to verfy Your email</h1>");
-//            MailSender ms = new MailSender();
-//            ms.email = email;
-//            ms.msg = "http://localhost:8080/DigitalPocket/verifyemail?uid=" + String.valueOf(otp);
-//            ms.processRequest(request, response);
+            Random rnd = new Random();
+            int otp = rnd.nextInt(999999);
+            db.pstmt = db.con.prepareStatement("insert into email_verification(email,verification_code,creation_time) values(?,?,now())");
+            db.pstmt.setString(1, email);
+            db.pstmt.setString(2, String.valueOf(otp));
+            int l = db.pstmt.executeUpdate();
+            MailSender ms = new MailSender();
+            ms.email = email;
+            ms.msg = "http://localhost:8080/DigitalPocket/verifyemail?uid=" + String.valueOf(otp);
+            ms.processRequest(request, response);
             return "Registion Sucessfull,please please check your inbox to verfy Your email";
 
         } catch (Exception e) {
