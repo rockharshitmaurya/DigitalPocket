@@ -37,9 +37,9 @@ public class FrontController extends HttpServlet {
            String cp=request.getContextPath();
            String sp=request.getServletPath();
            String path_info=request.getPathInfo();
-           out.println(cp+" ---");
-           out.println(sp);
-           out.println(path_info+"---");
+//           out.println(cp+" ---");
+//           out.println(sp);
+//           out.println(path_info+"---");
            if(path_info.equals("/index.html")){
             String path="http://localhost:8080"+cp+path_info;
             response.sendRedirect(path);
@@ -51,7 +51,7 @@ public class FrontController extends HttpServlet {
         String viewpath=sc.getInitParameter(path_info.substring(1));
         out.println(viewpath+"<----"+res);
         
-//        request.getRequestDispatcher(viewpath).forward(request, response);
+        request.getRequestDispatcher(viewpath).forward(request, response);
         }catch(Exception e){
             out.println(out);
         }

@@ -21,7 +21,6 @@ public class Registration implements Business {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
-        String cpwd = request.getParameter("cpwd");
         String no = request.getParameter("txtEmpPhone");
         String state = request.getParameter("state");
         String city = request.getParameter("city");
@@ -31,13 +30,16 @@ public class Registration implements Business {
         String qus = request.getParameter("qus");
         try {
             DBConnection db = new DBConnection();
-            db.pstmt = db.con.prepareStatement("insert into user_master(uid,name,phone_no,city_id,email,gender) values(?,?,?,?,?,?)");
+            db.pstmt = db.con.prepareStatement("insert into user_master(uid,name,phone_no,city_id,email,gender)"
+                    + " values(?,?,?,(select id from cities where "
+                    + "(name=? AND country_id=(select id from countries where name=?))),?,?)");
             db.pstmt.setInt(1, 1);
             db.pstmt.setString(2, name);
             db.pstmt.setString(3, no);
-            db.pstmt.setInt(4, 1);
-            db.pstmt.setString(5, email);
-            db.pstmt.setString(6, gender);
+            db.pstmt.setString(4, city);
+            db.pstmt.setString(5, country);
+            db.pstmt.setString(6, email);
+            db.pstmt.setString(7, gender);
             PreparedStatement userq = db.pstmt;
             db.pstmt = db.con.prepareStatement("insert into login_master(email,password,status) values(?,?,?)");
             db.pstmt.setString(1, email);
