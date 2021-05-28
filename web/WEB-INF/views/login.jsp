@@ -16,7 +16,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../images/android-icon-72x72.png">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Signin Pending</title>
 
    
   </head>
