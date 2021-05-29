@@ -17,6 +17,10 @@
         <param-name>Forget</param-name>
         <param-value>/WEB-INF/views/resetpassword.jsp</param-value>
     </context-param>
+       <context-param>
+        <param-name>ResetPwd</param-name>
+        <param-value>/WEB-INF/views/resetpassword.jsp</param-value>
+    </context-param>
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controller.FrontController</servlet-class>

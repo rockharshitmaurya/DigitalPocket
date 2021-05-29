@@ -15,5 +15,40 @@ function verifyPassword() {
             alert("Password is Not Matched");  
   }  
 }  
+function resetlogic(x, y) {
+    var pwd = document.getElementById(x).value;
+    var cpwd = document.getElementById(y).value;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                alert(xhr.responseText);
+            } else {
+                alert("request was unsucessful");
+            }
+        }
+    };
+    var url="fc/Forget?password="+eval(pwd)+"&repassword="+eval(cpwd);
+    xhr.open("get", url, true);
+    xhr.send(null);
+    alert(pwd);
+}
+function forgetLogic(x){
+    var email=document.getElementById(x).value;
+     var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                alert(xhr.responseText);
+            } else {
+                alert("request was unsucessful");
+            }
+        }
+    };
+    var url="../fc/Forget?email="+email;
+    xhr.open("get", url, true);
+    xhr.send(null);
+    alert(url);
+}
   
 
