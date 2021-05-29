@@ -33,13 +33,14 @@ function resetlogic(x, y) {
     xhr.send(null);
     alert(pwd);
 }
-function forgetLogic(x){
+function forgetLogic(x,y){
     var email=document.getElementById(x).value;
      var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                alert(xhr.responseText);
+                alert("we have sent you a Reset link vie email, Use the the link to Reset Your Password");
+//                document.getElementById(y).innerHTML="<strong>Success!</strong>we have sent you an link vie email, Use the the link to Rest Your Password";
             } else {
                 alert("request was unsucessful");
             }
