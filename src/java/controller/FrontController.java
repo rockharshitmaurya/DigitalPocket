@@ -20,35 +20,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FrontController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try{
-           String cp=request.getContextPath();
-           String sp=request.getServletPath();
-           String path_info=request.getPathInfo();
-           if(path_info.equals("/index.html")){
-            String path="http://localhost:8080"+cp+path_info;
-            response.sendRedirect(path);
-        }
-           Business obj=(Business)Class.forName("ActionLogic."+path_info.substring(1)).newInstance();
-           String res=obj.actionLogic(request,response);
-            ServletContext sc=getServletContext();
-            
-        String viewpath=sc.getInitParameter(path_info.substring(1));
-        out.println(viewpath+"<----"+res);
-//        request.getRequestDispatcher(viewpath).forward(request, response);
-        }catch(Exception e){
+        try {
+            String cp = request.getContextPath();
+            String sp = request.getServletPath();
+            String path_info = request.getPathInfo();
+            if (path_info.equals("/index.html")) {
+                String path = "http://localhost:8080" + cp + path_info;
+                response.sendRedirect(path);
+            }
+            Business obj = (Business) Class.forName("ActionLogic." + path_info.substring(1)).newInstance();
+            String res = obj.actionLogic(request, response);
+            ServletContext sc = getServletContext();
+
+            String viewpath = sc.getInitParameter(path_info.substring(1));
+            out.println(viewpath + "<----" + res);
+            request.getRequestDispatcher(viewpath).forward(request, response);
+        } catch (Exception e) {
             out.println(out);
         }
     }
