@@ -28,9 +28,9 @@ public class Forget implements Business {
             db.pstmt.setString(2, String.valueOf(otp));
             int l = db.pstmt.executeUpdate();
             ms.email = email;
-//     ms.msg = "http://localhost:8080/DigitalPocket/verifyemail?uid=" + String.valueOf(otp);
+            ms.msg = "http://localhost:8080/DigitalPocket/verifyemail?uid=" + String.valueOf(otp);
             ms.processRequest(request, response);
-            return "Registion Sucessfull,please please check your inbox to verfy Your email";
+            return "Success ! </strong>we have sent you an link vie email, Use the the link to Rest Your Password";
         } catch (Exception e) {
 
         }

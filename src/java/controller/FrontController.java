@@ -35,12 +35,13 @@ public class FrontController extends HttpServlet {
             Business obj = (Business) Class.forName("ActionLogic." + path_info.substring(1)).newInstance();
             String res = obj.actionLogic(request, response);
             ServletContext sc = getServletContext();
-
             String viewpath = sc.getInitParameter(path_info.substring(1));
-            out.println(viewpath + "<----" + res);
-            request.getRequestDispatcher(viewpath).forward(request, response);
+            out.println(res);
+            if (viewpath != null) {
+                request.getRequestDispatcher(viewpath).forward(request, response);
+            }
         } catch (Exception e) {
-            out.println(out);
+            out.println(out + " ---->");
         }
     }
 

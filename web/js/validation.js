@@ -41,10 +41,12 @@ function forgetLogic(x, y) {
     xhr.open("get", url, true);
     xhr.onload = function () {
         if (xhr.status == 200) {
-
+            var str = xhr.responseText;
+            str = str.substring(str.indexOf('@') + 1);
+            console.log(str);
             document.getElementById(y).innerHTML = "<strong>Success ! </strong>we have sent you an link vie email, Use the the link to Rest Your Password";
         } else {
-            alert("request was unsucessful");
+            document.getElementById(y).innerHTML = "<strong>Error !</strong>";
         }
     };
     xhr.send(null);

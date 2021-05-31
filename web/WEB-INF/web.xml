@@ -13,10 +13,6 @@
         <param-name>Registration</param-name>
         <param-value>/signup</param-value>
     </context-param>
-        <context-param>
-        <param-name>Forget</param-name>
-        <param-value>/WEB-INF/views/resetpassword.jsp</param-value>
-    </context-param>
        <context-param>
         <param-name>ResetPwd</param-name>
         <param-value>/WEB-INF/views/resetpassword.jsp</param-value>
