@@ -38,13 +38,24 @@ function forgetLogic(x, y) {
     var email = document.getElementById(x).value;
     var xhr = new XMLHttpRequest();
     var url = "../fc/Forget?email=" + email;
+    var btn = document.getElementById("base");
+    var value = btn.innerHTML;
     xhr.open("get", url, true);
+    xhr.onprogress = function () {
+        if (xhr.readyState <= 3) {
+
+            btn.innerHTML = value + '<img src="https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" id="img" alt="alt"/>';
+        }
+    };
     xhr.onload = function () {
         if (xhr.status == 200) {
+
             var str = xhr.responseText;
             str = str.substring(str.indexOf('@') + 1);
             console.log(str);
             document.getElementById(y).innerHTML = "<strong>Success ! </strong>we have sent you an link vie email, Use the the link to Rest Your Password";
+            btn.innerHTML = value;
+            console.log(value);
         } else {
             document.getElementById(y).innerHTML = "<strong>Error !</strong>";
         }

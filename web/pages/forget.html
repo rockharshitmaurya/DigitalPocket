@@ -12,6 +12,12 @@ and open the template in the editor.
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <link rel="icon" href="../images/android-icon-72x72.png">
         <link rel="stylesheet" type="text/css" href="../css/forget.css">
+        <style>
+            img{
+                height: 110px;
+                width: 110px;
+            }
+        </style>
     </head>
     <body>
        	<div class="container padding-bottom-3x mb-2 mt-5">
@@ -31,9 +37,10 @@ and open the template in the editor.
                             <!--<strong>Success!</strong>-->
                         </div>
                         <div class="card-body">
-                            <div class="form-group"> <label for="email-for-pass">Enter your email address</label> <input class="form-control" type="text" id="email-for-pass" name="email" required=""><small class="form-text text-muted">Enter the email address you used during the registration on DigitalPocket.com. Then we'll email a link to this address.</small> </div>
+                            <div class="form-group"> <label for="email-for-pass">Enter your email address</label> <input class="form-control" type="email" id="email-for-pass" name="email" required=""><small class="form-text text-muted">Enter the email address you used during the registration on DigitalPocket.com. Then we'll email a link to this address.</small> </div>
                         </div>
-                        <div class="card-footer"> <button  class="btn btn-success" onclick="forgetLogic('email-for-pass', 'msg')" type="submit">Get New Password</button> <button class="btn btn-danger" type="submit" onclick="location.href = '../';">Back to Login</button>  </div>
+                        <div class="card-footer" id="base"> <button  class="btn btn-success" onclick="forgetLogic('email-for-pass', 'msg')" type="submit">Get New Password</button> <button class="btn btn-danger" type="submit" onclick="location.href = '../';">Back to Login</button>   </div>
+
                     </div>
                 </div>
             </div>

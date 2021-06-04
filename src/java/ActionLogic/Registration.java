@@ -28,18 +28,23 @@ public class Registration implements Business {
         String gender = request.getParameter("gender");
         String ans = request.getParameter("ans");
         String qus = request.getParameter("qus");
+        
         try {
             DBConnection db = new DBConnection();
-            db.pstmt = db.con.prepareStatement("insert into user_master(uid,name,phone_no,city_id,email,gender)"
-                    + " values(?,?,?,(select id from cities where "
+//            db.pstmt=db.con.prepareStatement("select max(uid) from user_master");
+//            db.rst=db.pstmt.executeQuery();
+//            int max=db.rst.next()==true?db.rst.getInt(1):1;
+            
+            db.pstmt = db.con.prepareStatement("insert into user_master(name,phone_no,city_id,email,gender)"
+                    + " values(?,?,(select id from cities where "
                     + "(name=? AND country_id=(select id from countries where name=?))),?,?)");
-            db.pstmt.setInt(1, 1);
-            db.pstmt.setString(2, name);
-            db.pstmt.setString(3, no);
-            db.pstmt.setString(4, city);
-            db.pstmt.setString(5, country);
-            db.pstmt.setString(6, email);
-            db.pstmt.setString(7, gender);
+//            db.pstmt.setInt(1, max);
+            db.pstmt.setString(1, name);
+            db.pstmt.setString(2, no);
+            db.pstmt.setString(3, city);
+            db.pstmt.setString(4, country);
+            db.pstmt.setString(5, email);
+            db.pstmt.setString(6, gender);
             PreparedStatement userq = db.pstmt;
             db.pstmt = db.con.prepareStatement("insert into login_master(email,password,status) values(?,?,?)");
             db.pstmt.setString(1, email);
