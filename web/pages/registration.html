@@ -34,7 +34,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <h3 class="register-heading">New User ?, SignUp here !</h3>
-                            <form action="../fc/Registration" method="GET"  onsubmit="verifyPassword()">  
+                            <form action="#" method="GET" id="myForm">  
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -96,7 +96,7 @@
                                                 <option value="">Select City</option>
                                             </select>
                                         </div>
-                                        <input type="submit" class="btnRegister"  value="Register"/>
+                                        <input type="button" class="btnRegister"  value="Register" onclick="registration()"/>
                                     </div>
                                 </div>
                             </form>
@@ -109,6 +109,7 @@
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="../js/countrystatecity.js"></script>
+        <script src="../js/validation.js"></script>
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../js/validation.js" type="text/javascript"></script>
     </body>

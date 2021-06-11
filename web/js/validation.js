@@ -32,6 +32,23 @@ function resetlogic(x, y) {
     xhr.send(null);
     alert(pwd);
 }
+function registration() {
+    var xhr = new XMLHttpRequest();
+    var targetForm = $('#myForm');
+    var urlWithParams = '../fc/Registration' + "?" + targetForm.serialize();
+    xhr.open("get",urlWithParams,true);
+    xhr.onload=function () {
+        if(xhr.status==200){
+            alert(xhr.responseText);
+             location.reload();
+        }else{
+            alert(xhr.responseText);
+            location.reload();
+        }
+    }
+    alert(urlWithParams);
+    xhr.send();
+}
 
 
 function forgetLogic(x, y) {
