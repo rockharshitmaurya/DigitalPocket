@@ -26,23 +26,26 @@
                     <div style="padding-top:30px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
+                        <%String email=request.getParameter("email");%>
+                        
                         <form id="loginform" class="form-horizontal" role="form" onclick="">
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="login-pssword" type="password" class="form-control" name="password" value="" placeholder="New Password">                                        
+                                <input id="password" type="password" class="form-control" name="password" value="" placeholder="New Password">                                        
+                                <input id="email" type="hidden" value="<%=email%>">
                             </div>
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="clogin-password" type="password" class="form-control" name="confirm password" placeholder="Re-Enter Password">
+                                <input id="cpassword" type="password" class="form-control" name="confirm password" placeholder="Re-Enter Password">
                             </div>
                             <div style="margin-top:10px" class="form-group">
                                 <div class="col-sm-12 controls">
-                                    <a onclick="resetlogic('login-password','clogin-password')" id="btn-fblogin" href="#" class="btn btn-primary">Change Password</a>
+                                    <a onclick="resetlogic('password','cpassword','email')" id="btn-fblogin" href="#" class="btn btn-primary">Change Password</a>
                                 </div>
                             </div>
-                            <script src="../../js/validation.js"></script>
+                          
+                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js"></script>
                         </form>     
                     </div>                     
                 </div>  
@@ -50,6 +53,6 @@
         </div>
 
 
-        <script src="../../js/bootstrap.min.js" type="text/javascript"></script> 
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script> 
     </body>
 </html>

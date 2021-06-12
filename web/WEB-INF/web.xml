@@ -14,7 +14,7 @@
         <param-value>/signup</param-value>
     </context-param>
        <context-param>
-        <param-name>ResetPwd</param-name>
+        <param-name>rstToken</param-name>
         <param-value>/WEB-INF/views/resetpassword.jsp</param-value>
     </context-param>
     <servlet>
@@ -51,6 +51,15 @@
     <servlet-mapping>
         <servlet-name>vemail</servlet-name>
         <url-pattern>/verifyemail</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>eemail</servlet-name>
+        <jsp-file>/WEB-INF/views/error.jsp</jsp-file>
+        <!--<servlet-class>ActionLogic.verifyemail</servlet-class>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eemail</servlet-name>
+        <url-pattern>/error</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

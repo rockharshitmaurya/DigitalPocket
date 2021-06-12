@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DBConnect.DBConnection" %>
+<%@page errorPage="error" session="true"%>
+
 <!DOCTYPE html>
 
 <head>
@@ -36,11 +38,13 @@
                     out.println("cretion_time error");
                 }
             } else {
-
+               
                 out.println("<h1>Error Inner !</h1>");
             }
         } else {
             out.println("<h1>Error Outer !</h1>");
+            throw new Exception("Error");
+
         }
     %>
 </body>

@@ -14,34 +14,37 @@ function verifyPassword() {
         alert("Password is Not Matched");
     }
 }
-function resetlogic(x, y) {
+function resetlogic(x, y, z) {
+
     var pwd = document.getElementById(x).value;
     var cpwd = document.getElementById(y).value;
+    var email = document.getElementById(z).value;
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 alert(xhr.responseText);
+                window.location.replace("http://localhost:8080/DigitalPocket/");
             } else {
                 alert("request was unsucessful");
             }
         }
     };
-    var url = "fc/Forget?password=" + eval(pwd) + "&repassword=" + eval(cpwd);
+    var url = "../fc/ResetPwd?pwd=" + pwd + "&email=" + email;
     xhr.open("get", url, true);
     xhr.send(null);
-    alert(pwd);
 }
 function registration() {
     var xhr = new XMLHttpRequest();
     var targetForm = $('#myForm');
     var urlWithParams = '../fc/Registration' + "?" + targetForm.serialize();
-    xhr.open("get",urlWithParams,true);
-    xhr.onload=function () {
-        if(xhr.status==200){
+    xhr.open("get", urlWithParams, true);
+    xhr.onload = function () {
+        if (xhr.status == 200) {
             alert(xhr.responseText);
-             location.reload();
-        }else{
+            location.reload();
+        } else {
             alert(xhr.responseText);
             location.reload();
         }

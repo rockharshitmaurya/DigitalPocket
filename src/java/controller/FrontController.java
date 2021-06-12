@@ -38,10 +38,10 @@ public class FrontController extends HttpServlet {
             String viewpath = sc.getInitParameter(path_info.substring(1));
             out.println(res);
             if (viewpath != null) {
-//                request.getRequestDispatcher(viewpath).forward(request, response);
+                request.getRequestDispatcher(viewpath).forward(request, response);
             }
         } catch (Exception e) {
-            out.println(out + " ---->");
+            out.println(out + " ---->ME");
         }
     }
 
