@@ -14,6 +14,12 @@ import DBConnect.DBConnection;
  */
 public class rstToken implements Business{
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     @Override
     public String actionLogic(HttpServletRequest request, HttpServletResponse response) {
             String code=request.getParameter("uid");

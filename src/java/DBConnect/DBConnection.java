@@ -12,11 +12,31 @@ import java.sql.*;
  * @author LENOVO
  */
 public class DBConnection {
-  public Connection con;
+
+    /**
+     *
+     */
+    public Connection con;
+
+    /**
+     *
+     */
     public Statement stmt;
+
+    /**
+     *
+     */
     public PreparedStatement pstmt;
+
+    /**
+     *
+     */
     public ResultSet rst;
    
+    /**
+     *
+     * @throws SQLException
+     */
     public DBConnection() throws SQLException
     {
         try

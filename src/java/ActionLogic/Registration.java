@@ -17,6 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Registration implements Business {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     public String actionLogic(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String email = request.getParameter("email");

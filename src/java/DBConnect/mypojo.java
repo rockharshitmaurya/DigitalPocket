@@ -14,6 +14,11 @@ import java.util.HashMap;
  * @author LENOVO
  */
 public class mypojo {
+
+    /**
+     *
+     * @return
+     */
     public HashMap<Integer,String> dataGet(){
         HashMap<Integer,String> map=new HashMap<>(); 
         int i=0;

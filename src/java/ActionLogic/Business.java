@@ -13,5 +13,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author LENOVO
  */
 public interface Business {
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     public String actionLogic(HttpServletRequest request,HttpServletResponse response);
 }

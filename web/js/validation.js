@@ -45,11 +45,10 @@ function registration() {
             alert(xhr.responseText);
             location.reload();
         } else {
-            alert(xhr.responseText);
+            alert('request was unsucessful');
             location.reload();
         }
-    }
-    alert(urlWithParams);
+    };
     xhr.send();
 }
 
