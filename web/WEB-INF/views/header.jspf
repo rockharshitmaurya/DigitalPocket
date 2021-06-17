@@ -1,0 +1,37 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<nav class="navbar navbar-light form-control " >
+    <div class="container-fluid overflow-hidden">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">DigitalPocket.com</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="error">About Us</a></li>
+            <li><a href="error">Contact Us</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" name="search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <%
+                    String name = (String) session.getAttribute("name");
+                %>
+                <a href="">
+                    Logged In as <%= name%>
+                </a>
+            </li>
+            <li>
+                <% name = null;%>
+                <a href="fc/Logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+

@@ -32,6 +32,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+//            request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
             String cp = request.getContextPath();
             String sp = request.getServletPath();
             String path_info = request.getPathInfo();
@@ -48,7 +49,7 @@ public class FrontController extends HttpServlet {
                 request.getRequestDispatcher(viewpath).forward(request, response);
             }
         } catch (Exception e) {
-            out.println(out + " ---->ME");
+            out.println(e.getMessage());
         }
     }
 
