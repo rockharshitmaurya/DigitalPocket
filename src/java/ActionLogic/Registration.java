@@ -7,6 +7,7 @@ package ActionLogic;
 
 import javax.servlet.http.HttpServletRequest;
 import DBConnect.DBConnection;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Random;
 import javax.servlet.http.HttpServletResponse;
@@ -34,17 +35,14 @@ public class Registration implements Business {
         String gender = request.getParameter("gender");
         String ans = request.getParameter("ans");
         String qus = request.getParameter("qus");
-        
+        Connection con=null;
         try {
             DBConnection db = new DBConnection();
-//            db.pstmt=db.con.prepareStatement("select max(uid) from user_master");
-//            db.rst=db.pstmt.executeQuery();
-//            int max=db.rst.next()==true?db.rst.getInt(1):1;
-            
+            db.con.setAutoCommit(false);
+            con=db.con;
             db.pstmt = db.con.prepareStatement("insert into user_master(name,phone_no,city_id,email,gender)"
                     + " values(?,?,(select id from cities where "
                     + "(name=? AND country_id=(select id from countries where name=?))),?,?)");
-//            db.pstmt.setInt(1, max);
             db.pstmt.setString(1, name);
             db.pstmt.setString(2, no);
             db.pstmt.setString(3, city);
@@ -69,10 +67,16 @@ public class Registration implements Business {
             ms.email = email;
             ms.msg = "http://localhost:8080/DigitalPocket/verifyemail?uid=" + String.valueOf(otp);
             ms.processRequest(request, response);
+            db.con.commit();
             return "Registion Sucessfull,please please check your inbox to verfy Your email";
 
         } catch (Exception e) {
-            return e + "Exception#";
+            try{
+                con.rollback();
+            }catch(Exception e1){
+                return "Inner  Exception rollback()";
+            }
+            return e.getMessage();
         }
 
     }

@@ -16,5 +16,6 @@
         
         
         <h1 style="color: black; text-align: center"  >Something went wrong</h1>
+        Exception is: <%= exception %>
     </body>
 </html>

@@ -65,10 +65,17 @@
             </div>
 
             <div class="col-md-9">
-                <% for (int i = 0; i < 5; i += 1) { %>
+                <%
+                    DBConnection db = new DBConnection();
+                    db.pstmt = db.con.prepareStatement("select doc_type,doc_location,doc_filename from documents where"
+                            + "(uid=(select uid from user_master where email=?))");
+                    db.pstmt.setString(1, session_check.getAttribute("name").toString());
+                    db.rst = db.pstmt.executeQuery();
+                    while (db.rst.next()) {%>
+
                 <!--<img src="images/android-icon-72x72.png" alt="alt" width="150" height="150"/>-->
-                <embed src="assets/rukhsar_resume.pdf" width="220" style="padding: 15px"/>
-                <a href="assets/rukhsar_resume.pdf" download>Download PDF</a>
+                <embed src="<%= db.rst.getString("doc_location") + db.rst.getString("doc_filename")%>" width="220" style="padding: 15px"/>
+                <a href="imagesDB/Appointment_slip (1).pdf" download>Download <%=db.rst.getString("doc_type")%></a>
                 <% }%>
 
             </div>

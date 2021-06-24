@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -64,15 +65,18 @@ public class FileUpload extends HttpServlet {
                     + "upload path : " + uploadPath);
             String type = fileName.substring(fileName.lastIndexOf("."));
             int size = (int) part.getSize() / (1024 * 1024);
+            HttpSession session = request.getSession();
+            String uname=session.getAttribute("name").toString();
+            out.print("Name : "+uname);
             DBConnection db = new DBConnection();
-            db.pstmt = db.con.prepareStatement("insert into documents(doc_id,doc_type,doc_size,doc_upload_time,doc_location,doc_filename,uid) values(?,?,?,now(),?,?,?)");
+            db.pstmt = db.con.prepareStatement("insert into documents(doc_id,doc_type,doc_size,doc_upload_time,doc_location,doc_filename,uid) values(?,?,?,now(),?,?,(select uid from user_master where(email=?)))");
             db.pstmt.setString(1, "1");
 
             db.pstmt.setString(2, type);
             db.pstmt.setInt(3, size);
-            db.pstmt.setString(4, sRootPath);
+            db.pstmt.setString(4, "imagesDB/");
             db.pstmt.setString(5, fileName);
-            db.pstmt.setInt(6, 18);
+            db.pstmt.setString(6, uname);
             int i = db.pstmt.executeUpdate();
             if (i > 0) {
                 out.println("Sucess");
